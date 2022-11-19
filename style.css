@@ -59,7 +59,7 @@ body{
 }
 
 .squre_sign_Icon, .edite_icon, .delete_icon{
-    display: none;
+    display: flex;
     height: 20px;
     width: 20px;
     cursor: pointer;
@@ -68,6 +68,10 @@ body{
 }
 .squre_sign_Icon{
     background-image: url(img/Vector\(2\).png);
+}
+.squre_sign_Icon.write_sign_icon{
+    background-image: url(img/Vector\(3\).png);
+
 }
 .edite_icon{
     background-image: url(img/Vector.png);
