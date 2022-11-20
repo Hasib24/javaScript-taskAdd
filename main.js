@@ -18,7 +18,9 @@ const delete_dialogue_bx = document.querySelector('.delete_dialoge_box');
 // let delete_dia_bx_btn = delete_dialogue_bx.children;
 
 
+// variable for edit dialogue box 
 
+const edit_dialoge_box = document.querySelector('.edit_dialoge_box');
 
 
 
@@ -39,11 +41,10 @@ overlay.addEventListener('click', ()=>{
     overlay.classList.remove('overlay_active');
     add_new_dialoge_box.classList.remove('add_new_dialoge_box_active')
     delete_dialogue_bx.classList.remove('delete_active');
-
+    edit_dialoge_box.classList.remove('edit_active');
 
 
     console.log('overlay clicked')
-
 })
 
 
@@ -84,15 +85,10 @@ addOkBtn.addEventListener('click', ()=>{
     action_edit_icon.classList.add('edite_icon');
     action_delete_icon.classList.add('delete_icon');
 
-    
-
-    // serial wii be here 
     task_sn.innerText = sn.length+1;
     task_name.innerText = inputBx.value;
     task_date.innerText = getClickTime();
     
-
-
     taskDiv.append(task_sn);
     taskDiv.append(task_name);
     taskDiv.append(task_date);
@@ -105,17 +101,11 @@ addOkBtn.addEventListener('click', ()=>{
     
     taskContainer.append(taskDiv)
 
-
-
-
     inputBx.value ='';
     console.log(`task added`);
 
 
-    alwaysRanForActionDelete();
-    
-
-    
+    alwaysRanForAction();   
 })
 
 
@@ -148,8 +138,9 @@ return `${dd} ${mm} ${yy}, ${hhmmss}`
 
 
 
-function alwaysRanForActionDelete(){
+function alwaysRanForAction(){
     const deletButtons = document.querySelectorAll('.delete_icon');
+    const editButtons = document.querySelectorAll('.edite_icon');
 
     deletButtons.forEach(function(button, islam, imran){
         button.addEventListener('click', ()=>{
@@ -158,9 +149,16 @@ function alwaysRanForActionDelete(){
 
             console.log(`delete button clicked`);
 
-
             forDeletDialogueBx(button);
             
+        })
+    })
+
+    editButtons.forEach(function(editIcon){
+        editIcon.addEventListener('click',()=>{
+            overlay.classList.add('overlay_active');
+
+            foEditDialogueBx(editIcon);
         })
     })
 }
@@ -202,14 +200,33 @@ function forDeletDialogueBx(button){
     })
 
 }
-// console.log(taskContainer);
 
 
-    // for ( i = 0; i < action_squre_sign_Icon.length; i++) {
-    //     const particular_squ_icon = action_squre_sign_Icon[i];
-    //     particular_squ_icon.addEventListener('click', ()=>{
-    //         particular_squ_icon.classList.toggle('write_sign_icon')
-    //     })
-    //     // console.log(particular_squ_icon);
-    // }
+
+
+function foEditDialogueBx(editIcon){
+    console.log(`Edite function callde`);
+    const editable = edit_dialoge_box.children[1];
+    const saveBtn = edit_dialoge_box.children[2];
+
+    editable.value = editIcon.parentElement.previousSibling.previousSibling.innerText;
+
+    edit_dialoge_box.classList.add('edit_active');
+    
+    saveBtn.addEventListener('click', ()=>{
+        editIcon.parentElement.previousSibling.previousSibling.innerText = editable.value;
+        console.log('save btn clicked');
+
+        overlay.classList.remove('overlay_active');
+        edit_dialoge_box.classList.remove('edit_active');
+
+
+
+
+    })
+    
+
+
+
+}
 

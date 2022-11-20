@@ -211,3 +211,49 @@ body{
     background-color: #D04205;
     
 }
+
+/*------------- DELETE DAILOGUE BOX ------------- */
+.edit_dialoge_box{ 
+    display: none;
+    z-index: 34;
+    width: 300px;
+    padding: 15px;
+    background-color: #fff;
+    opacity: 1;
+    /* border: 1px solid; */
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.edit_dialoge_box.edit_active{
+    display: flex;
+}
+
+
+.edit_dialoge_box_header span{
+
+    text-align: left;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 22px;
+    font-weight: 400;  
+}
+
+
+
+.edit_dialoge_box input[type ='text']{
+    padding: 10px 30px;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.edit_dialoge_box input[type ='submit']{
+    padding: 10px 30px;
+    font-size: 18px;
+    width: 100px;
+    color: #fff;
+    background-color: #1EBBC5;
+    border: none;
+
+}
