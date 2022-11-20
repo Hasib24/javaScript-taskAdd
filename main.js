@@ -13,6 +13,12 @@ let taskContainer = document.querySelector('.container');
 // variable for action icons 
 let action_squre_sign_Icon = document.querySelectorAll('.squre_sign_Icon');
 
+// variable for delete dialogue box 
+const delete_dialogue_bx = document.querySelector('.delete_dialoge_box');
+// let delete_dia_bx_btn = delete_dialogue_bx.children;
+
+
+
 
 
 
@@ -21,20 +27,22 @@ let action_squre_sign_Icon = document.querySelectorAll('.squre_sign_Icon');
 
 // add new button  clicked
 addBtn.addEventListener('click', ()=>{
+    overlay.classList.add('overlay_active');
+    add_new_dialoge_box.classList.add('add_new_dialoge_box_active')
 
-    overlay.classList.toggle('overlay_active');
     console.log(' add button clicked');
-
-    add_new_dialoge_box.classList.toggle('add_new_dialoge_box_active')
-
-    
 })
 
 
-
+// overlay activated 
 overlay.addEventListener('click', ()=>{
-    overlay.classList.toggle('overlay_active');
-    add_new_dialoge_box.classList.toggle('add_new_dialoge_box_active')
+    overlay.classList.remove('overlay_active');
+    add_new_dialoge_box.classList.remove('add_new_dialoge_box_active')
+    delete_dialogue_bx.classList.remove('delete_active');
+
+
+
+    console.log('overlay clicked')
 
 })
 
@@ -76,7 +84,7 @@ addOkBtn.addEventListener('click', ()=>{
     action_edit_icon.classList.add('edite_icon');
     action_delete_icon.classList.add('delete_icon');
 
-    action_delete_icon.setAttribute('onclick', 'deleteTask()')
+    
 
     // serial wii be here 
     task_sn.innerText = sn.length+1;
@@ -101,7 +109,11 @@ addOkBtn.addEventListener('click', ()=>{
 
 
     inputBx.value ='';
-    console.log(`task added`)
+    console.log(`task added`);
+
+
+    alwaysRanForActionDelete();
+    
 
     
 })
@@ -117,28 +129,79 @@ function getClickTime(){
         hhmmss = ntime.toLocaleTimeString();
 
     switch (mm) {
-        case 0: mm = `January` ; break;
-        case 1: mm = `February`; break;
+        case 0: mm = `Jan` ; break;
+        case 1: mm = `Feb`; break;
         case 2: mm = `Martch`  ; break;
         case 3: mm = `April`   ; break;
         case 4: mm = `May`     ; break;
         case 5: mm = `June`    ; break;
         case 6: mm = `july`    ; break;
-        case 7: mm = `August`  ;break;
-        case 8: mm = `September`;break;
-        case 9: mm = `October` ; break;      
-        case 10:mm = `November`; break;
-        case 11:mm = `December`; break;
+        case 7: mm = `Aug`  ;break;
+        case 8: mm = `Sep`;break;
+        case 9: mm = `Oct` ; break;      
+        case 10:mm = `Nov`; break;
+        case 11:mm = `Dec`; break;
     }
 return `${dd} ${mm} ${yy}, ${hhmmss}`
 }
 
 
-function deleteTask(){
-    action_delete_icon.parentElement.parentElement.remove();
+
+
+function alwaysRanForActionDelete(){
+    const deletButtons = document.querySelectorAll('.delete_icon');
+
+    deletButtons.forEach(function(button, islam, imran){
+        button.addEventListener('click', ()=>{
+            overlay.classList.add('overlay_active');
+            delete_dialogue_bx.classList.add('delete_active');
+
+            console.log(`delete button clicked`);
+
+
+            forDeletDialogueBx(button);
+            
+        })
+    })
 }
 
+function forDeletDialogueBx(button){
+    const delete_dialoge_box_button = document.querySelectorAll('.delete_dialoge_box_button button');
 
+    delete_dialoge_box_button.forEach(function(btn){
+
+        if(btn.classList.contains('yesBtn')){
+            btn.addEventListener('click',()=>{
+                console.log(`yes clicked`);
+                // console.log(button.parentElement.parentElement)
+                button.parentElement.parentElement.remove();
+
+
+                overlay.classList.remove('overlay_active');
+
+                delete_dialogue_bx.classList.remove('delete_active');
+
+
+            })
+            
+        }else if(btn.classList.contains('noBtn')){
+
+            btn.addEventListener('click', ()=>{
+                console.log(`no btn clicked`);
+
+                overlay.classList.remove('overlay_active');
+                delete_dialogue_bx.classList.remove('delete_active');
+
+
+
+            })
+
+        }
+
+        
+    })
+
+}
 // console.log(taskContainer);
 
 

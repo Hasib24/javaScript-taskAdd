@@ -45,6 +45,7 @@ body{
     display: flex;
     justify-content: space-between;
     padding: 20px 20px;
+    transition: 0.5s;
 }
 .task:nth-child(2n){
     background-color: #E4E4E4;
@@ -106,6 +107,9 @@ body{
     align-items: center;
 }
 
+
+/*------------- ADD NEW DAILOGUE BOX ------------- */
+
 .add_new_dialoge_box{
     
     z-index: 34;
@@ -158,4 +162,52 @@ body{
 }
 .add_new_dialoge_box_active{
     display: flex;
+}
+
+
+/*------------- DELETE DAILOGUE BOX ------------- */
+.delete_dialoge_box{ 
+    display: none;   
+    z-index: 34;
+    width: 300px;
+    padding: 15px;
+    background-color: #fff;
+    opacity: 1;
+    /* border: 1px solid; */
+    flex-direction: column;
+}
+.delete_dialoge_box.delete_active{
+    display: block;
+}
+
+.delete_dialoge_box_header span{
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 22px;
+    font-weight: 400;  
+}
+
+.delete_dialoge_box_header p{
+    margin: 20px 0;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.delete_dialoge_box_button{
+    /* border: 1px solid; */
+    display: flex;
+    justify-content: space-between;
+}
+.delete_dialoge_box_button button{
+    
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #1EBBC5;
+    border: none;
+    cursor: pointer;
+    /* border: 1px solid; */
+
+}
+.delete_dialoge_box_button button:nth-child(2){
+    background-color: #D04205;
+    
 }
